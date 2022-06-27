@@ -1,26 +1,26 @@
 class Questions
-  def initialize()
-    @question = "Player"
+  attr_accessor :turn
+
+  def initialize(turn)
+    @turn = turn
+    @number1 = rand(99)
+    @number2 = rand(99)
+    @answer = 0
   end
 
-  def number
-    number1 = rand(1..99)
-    number2 = rand(1..99)
-
-    puts " #{@question}: What is #{number1} - #{number2}?"
-
+  def question
+    puts "Player #{turn}: What is #{@number1} - #{@number2}?"
     print ">"
-    answer = $stdin.gets.chomp.to_i
+    @answer = $stdin.gets.chomp.to_i
+  end
 
-    if answer == number1 - number2
-      puts "Yes, you are correct"
-      return true
+  def answer
+    if @answer == @number1 - @number2
+      puts "Player #{turn}: Yes, you are correct"
+      true
     else
-      puts "Seriously, No"
-      return false
+      puts "Player #{turn}: Seriously, No"
+      false
     end
   end
 end
-
-question = Questions.new()
-question.number
